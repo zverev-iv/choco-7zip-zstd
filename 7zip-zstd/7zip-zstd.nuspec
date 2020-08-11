@@ -17,7 +17,7 @@
     <bugTrackerUrl>https://github.com/mcmilk/7-Zip-zstd/issues</bugTrackerUrl>
     <tags>7zip-zstd 7zip 7-zip zstd zstandard archive</tags>
     <summary>7-Zip with support for Zstandard, Brotli, Lz4, Lz5 and Lizard Compression</summary>
-    <description>this plugin for 7-Zip adding to 7zip support for:
+    <description>This plugin adding to 7zip support for:
 
   - Zstandard
   - Brotli
