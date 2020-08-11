@@ -23,7 +23,7 @@
   - Brotli
   - Lz4
   - Lz5
-  -Lizard
+  - Lizard
 
 You can check it with ```7z i``` command after install
 </description>
