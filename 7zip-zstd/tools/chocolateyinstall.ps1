@@ -21,5 +21,5 @@ if ((Get-OSArchitectureWidth 64) -and $env:chocolateyForceX86 -ne $true) {
        7z e "$($archiveLocation)"  -o"$($extractLocation)"  *-x64.dll -y -r }
 else {
        7z e "$($archiveLocation)"  -o"$($extractLocation)"  *-x32.dll -y -r }
-Copy-Item "$($extractLocation)" $7zLocation -Force
+Copy-Item "$($extractLocation)" "$($7zLocation)" -Force -Recurse -Verbose
 Write-Host "Extraction completed" -ForegroundColor Blue
