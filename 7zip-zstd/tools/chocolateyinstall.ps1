@@ -13,9 +13,14 @@ $packageArgs["fileFullPath"] = "$(Join-Path (Split-Path -parent $MyInvocation.My
 
 $archiveLocation = Get-ChocolateyWebFile @packageArgs 
 $extractLocation = "$(Join-Path (Split-Path -parent $archiveLocation) "Codecs")"
+
+
+
 $spliter = "path to executable:"
 $7zLocation = "$(Split-Path -parent ((7z --shimgen-noop | Select-String $spliter) -split $spliter | ForEach-Object Trim)[1])"
 $installLocation = "$(Join-Path $7zLocation "Codecs")"
+
+New-Item -ItemType directory -Path $installLocation
 
 Write-Host "Install libraries" -ForegroundColor Blue
 if ((Get-OSArchitectureWidth 64) -and $env:chocolateyForceX86 -ne $true) {

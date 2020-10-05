@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
     <id>7zip-zstd</id>
-    <version>1.4.5.2</version>
+    <version>1.4.5.3</version>
     <packageSourceUrl>https://github.com/zverev-iv/choco-7zip-zstd</packageSourceUrl>
     <owners>zverev-iv</owners>
     <title>7zip-zstd (Install)</title>
