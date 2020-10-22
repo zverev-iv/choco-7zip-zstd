@@ -10,5 +10,5 @@ $installLocation = "$(Join-Path $7zLocation "Codecs")"
 
 Write-Host "Remove libraries" -ForegroundColor Blue
 ForEach($library in $packageArgs["libraries"]) {
-  Remove-Item "$(Join-Path $installLocation ($library+"*"))" -Force }
+  Remove-Item "$(Join-Path $installLocation ($library+"*.dll"))" -Force }
 Write-Host "Remove completed" -ForegroundColor Blue
