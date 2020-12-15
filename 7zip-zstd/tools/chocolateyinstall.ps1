@@ -1,8 +1,8 @@
 ﻿$ErrorActionPreference = 'Stop';
 
-$meta = Get-Content -Path $env:ChocolateyPackageFolder\tools\packageArgs.json -Raw
+$meta = Get-Content -Path $env:ChocolateyPackageFolder\tools\packageArgs.csv -Raw
 $packageArgs = @{}
-(ConvertFrom-Json $meta).psobject.properties | ForEach-Object { $packageArgs[$_.Name] = $_.Value }
+(ConvertFrom-Csv $meta -Delimiter ';').psobject.properties | ForEach-Object { $packageArgs[$_.Name] = $_.Value }
 
 $filename = if ((Get-OSArchitectureWidth 64) -and $env:chocolateyForceX86 -ne $true) {
        Split-Path $packageArgs["url64bit"] -Leaf }
@@ -14,20 +14,21 @@ $packageArgs["fileFullPath"] = "$(Join-Path (Split-Path -parent $MyInvocation.My
 $archiveLocation = Get-ChocolateyWebFile @packageArgs
 $extractLocation = "$(Join-Path (Split-Path -parent $archiveLocation) "Codecs")"
 
-
-
 $spliter = "path to executable:"
 $7zLocation = "$(Split-Path -parent ((7z --shimgen-noop | Select-String $spliter) -split $spliter | ForEach-Object Trim)[1])"
 $installLocation = "$(Join-Path $7zLocation "Codecs")"
 
-New-Item -ItemType directory -Path $installLocation -Force
+Write-Output "Install libraries"
 
-Write-Host "Install libraries" -ForegroundColor Blue
+New-Item -ItemType directory -Path $installLocation -Force | Out-Null
+7z e "$($archiveLocation)" -o"$($extractLocation)"
 if ((Get-OSArchitectureWidth 64) -and $env:chocolateyForceX86 -ne $true) {
-       7z e "$($archiveLocation)" -o"$($extractLocation)"  *-x64.dll -y -r }
-else {
-       7z e "$($archiveLocation)" -o"$($extractLocation)"  *-x32.dll -y -r }
+       $extractLocationArch = Join-Path $extractLocation '*-x64.dll'
+} else {
+       $extractLocationArch = Join-Path $extractLocation '*-x32.dll'
+}
 
-ForEach($library in $packageArgs["libraries"]) {
-       Copy-Item "$(Join-Path $extractLocation ($library+"*"))" "$($installLocation)" -Force }
-Write-Host "Install completed" -ForegroundColor Blue
+Get-ChildItem -Recurse $extractLocationArch | Select-Object Name | ConvertTo-Csv -Delimiter ';' | Out-File $env:ChocolateyPackageFolder\tools\installed.csv
+Copy-Item $extractLocationArch $installLocation -Recurse -Force
+
+Write-Output "Install completed"
