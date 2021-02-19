@@ -1,8 +1,7 @@
 ﻿$ErrorActionPreference = 'Stop';
 
-$meta = Get-Content -Path $env:ChocolateyPackageFolder\tools\packageArgs.csv -Raw
-$packageArgs = @{}
-(ConvertFrom-Csv $meta -Delimiter ';').psobject.properties | ForEach-Object { $packageArgs[$_.Name] = $_.Value }
+$meta = Get-Content -Path $env:ChocolateyPackageFolder\tools\packageArgs.ps1 -Raw | Out-String
+$packageArgs = (Invoke-Expression $meta)
 
 $filename = if ((Get-OSArchitectureWidth 64) -and $env:chocolateyForceX86 -ne $true) {
        Split-Path $packageArgs["url64bit"] -Leaf }
