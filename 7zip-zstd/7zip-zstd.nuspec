@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
     <id>7zip-zstd</id>
-    <version>1.4.9.20</version>
+    <version>1.5.0.20-beta</version>
     <packageSourceUrl>https://github.com/zverev-iv/choco-7zip-zstd</packageSourceUrl>
     <owners>zverev-iv</owners>
     <title>7zip-zstd (Install)</title>
@@ -29,7 +29,7 @@ You can check it with ```7z i``` command after install
 </description>
     <releaseNotes>https://github.com/mcmilk/7-Zip-zstd/releases/</releaseNotes>
     <dependencies>
-      <dependency id="7zip.install" version="19.0" />
+      <dependency id="7zip.install" version="21.3-beta" />
     </dependencies>
   </metadata>
   <files>
