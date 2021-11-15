@@ -1,8 +1,8 @@
 @{
-    url            = "https://github.com/mcmilk/7-Zip-zstd/releases/download/19.00-v1.4.9-R2/Codecs-x32.7z";
-    checksum       = "C91F1AF0BC0C89F85484A3B90C537538FA3AC45306962BF7483E3E36605584FD";
+    url            = "https://github.com/mcmilk/7-Zip-zstd/releases/download/v21.03-v1.5.0-R2/Codecs-x32.7z";
+    checksum       = "C845CE295A59FC07A514C88C8A4F320425592299700AE900DBF2064A565DD2ED";
     checksumType   = "sha256";
-    url64bit       = "https://github.com/mcmilk/7-Zip-zstd/releases/download/19.00-v1.4.9-R2/Codecs-x64.7z";
-    checksum64     = "9D91655E39F5D1F186792C66641E71AE4DBE9CF7BC4C73B3FA784026A66E2653";
+    url64bit       = "https://github.com/mcmilk/7-Zip-zstd/releases/download/v21.03-v1.5.0-R2/Codecs-x64.7z";
+    checksum64     = "8605C6252A8C6337B27EA4125D601FBB551CCD68E454E4C6A9F77248C0DC4538";
     checksumType64 = "sha256";
 }
