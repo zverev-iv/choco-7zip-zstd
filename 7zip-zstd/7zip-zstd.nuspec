@@ -29,7 +29,7 @@ You can check it with ```7z i``` command after install
 </description>
     <releaseNotes>https://github.com/mcmilk/7-Zip-zstd/releases/</releaseNotes>
     <dependencies>
-      <dependency id="7zip.install" version="21.3-beta" />
+      <dependency id="7zip.install" version="22.1" />
     </dependencies>
   </metadata>
   <files>
