@@ -23,9 +23,9 @@ Write-Output "Install libraries"
 New-Item -ItemType directory -Path $installLocation -Force | Out-Null
 7z e "$($archiveLocation)" -o"$($extractLocation)"
 if ((Get-OSArchitectureWidth 64) -and $env:chocolateyForceX86 -ne $true) {
-       $extractLocationArch = Join-Path $extractLocation '*-x64.dll'
+       $extractLocationArch = Join-Path $extractLocation '*.dll'
 } else {
-       $extractLocationArch = Join-Path $extractLocation '*-x32.dll'
+       $extractLocationArch = Join-Path $extractLocation '*.dll'
 }
 
 Get-ChildItem -Recurse $extractLocationArch | Select-Object Name | ConvertTo-Csv -Delimiter ';' | Out-File $path\tools\installed.csv
