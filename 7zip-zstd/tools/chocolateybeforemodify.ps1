@@ -1,6 +1,7 @@
 ﻿$ErrorActionPreference = 'Stop';
 
-$installed = Get-Content -Path $env:ChocolateyPackageFolder\tools\installed.csv -Raw | ConvertFrom-Csv -Delimiter ';'
+$path = Get-ChocolateyPath -PathType 'PackagePath'
+$installed = Get-Content -Path $path\tools\installed.csv -Raw | ConvertFrom-Csv -Delimiter ';'
 
 $spliter = "path to executable:"
 $7zLocation = "$(Split-Path -parent ((7z --shimgen-noop | Select-String $spliter) -split $spliter | ForEach-Object Trim)[1])"

@@ -1,6 +1,7 @@
 ﻿$ErrorActionPreference = 'Stop';
 
-$meta = Get-Content -Path $env:ChocolateyPackageFolder\tools\packageArgs.ps1 -Raw | Out-String
+$path = Get-ChocolateyPath -PathType 'PackagePath'
+$meta = Get-Content -Path $path\tools\packageArgs.ps1 -Raw | Out-String
 $packageArgs = (Invoke-Expression $meta)
 
 $filename = if ((Get-OSArchitectureWidth 64) -and $env:chocolateyForceX86 -ne $true) {
@@ -27,7 +28,7 @@ if ((Get-OSArchitectureWidth 64) -and $env:chocolateyForceX86 -ne $true) {
        $extractLocationArch = Join-Path $extractLocation '*-x32.dll'
 }
 
-Get-ChildItem -Recurse $extractLocationArch | Select-Object Name | ConvertTo-Csv -Delimiter ';' | Out-File $env:ChocolateyPackageFolder\tools\installed.csv
+Get-ChildItem -Recurse $extractLocationArch | Select-Object Name | ConvertTo-Csv -Delimiter ';' | Out-File $path\tools\installed.csv
 Copy-Item $extractLocationArch $installLocation -Recurse -Force
 
 Write-Output "Install completed"
